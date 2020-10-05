@@ -15,6 +15,10 @@
 		AFCA7B61252A386100958D62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFCA7B5F252A386100958D62 /* LaunchScreen.storyboard */; };
 		AFCA7B6C252A386100958D62 /* FunkyNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B6B252A386100958D62 /* FunkyNotesTests.swift */; };
 		AFCA7B77252A386100958D62 /* FunkyNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B76252A386100958D62 /* FunkyNotesUITests.swift */; };
+		AFCA7B8B252A38E600958D62 /* NoteDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8A252A38E600958D62 /* NoteDataManagerProtocol.swift */; };
+		AFCA7B8D252A391700958D62 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8C252A391700958D62 /* Note.swift */; };
+		AFCA7B8F252A39CF00958D62 /* NoteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8E252A39CF00958D62 /* NoteProtocol.swift */; };
+		AFCA7B93252A3B4300958D62 /* NoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B92252A3B4300958D62 /* NoteDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		AFCA7B72252A386100958D62 /* FunkyNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunkyNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFCA7B76252A386100958D62 /* FunkyNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunkyNotesUITests.swift; sourceTree = "<group>"; };
 		AFCA7B78252A386100958D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFCA7B8A252A38E600958D62 /* NoteDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataManagerProtocol.swift; sourceTree = "<group>"; };
+		AFCA7B8C252A391700958D62 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		AFCA7B8E252A39CF00958D62 /* NoteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProtocol.swift; sourceTree = "<group>"; };
+		AFCA7B92252A3B4300958D62 /* NoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +107,10 @@
 		AFCA7B53252A385D00958D62 /* FunkyNotes */ = {
 			isa = PBXGroup;
 			children = (
-				AFCA7B54252A385D00958D62 /* AppDelegate.swift */,
-				AFCA7B56252A385D00958D62 /* SceneDelegate.swift */,
-				AFCA7B58252A385D00958D62 /* ContentView.swift */,
-				AFCA7B5A252A386100958D62 /* Assets.xcassets */,
-				AFCA7B5F252A386100958D62 /* LaunchScreen.storyboard */,
-				AFCA7B62252A386100958D62 /* Info.plist */,
+				AFCA7B88252A38A200958D62 /* Managers */,
+				AFCA7B87252A389C00958D62 /* Flows */,
+				AFCA7B86252A388F00958D62 /* Assets */,
+				AFCA7B85252A387E00958D62 /* SupportingFiles */,
 				AFCA7B5C252A386100958D62 /* Preview Content */,
 			);
 			path = FunkyNotes;
@@ -134,6 +140,76 @@
 				AFCA7B78252A386100958D62 /* Info.plist */,
 			);
 			path = FunkyNotesUITests;
+			sourceTree = "<group>";
+		};
+		AFCA7B84252A387100958D62 /* Delagates */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B54252A385D00958D62 /* AppDelegate.swift */,
+				AFCA7B56252A385D00958D62 /* SceneDelegate.swift */,
+			);
+			path = Delagates;
+			sourceTree = "<group>";
+		};
+		AFCA7B85252A387E00958D62 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B84252A387100958D62 /* Delagates */,
+				AFCA7B5F252A386100958D62 /* LaunchScreen.storyboard */,
+				AFCA7B62252A386100958D62 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		AFCA7B86252A388F00958D62 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B5A252A386100958D62 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		AFCA7B87252A389C00958D62 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B58252A385D00958D62 /* ContentView.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		AFCA7B88252A38A200958D62 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B89252A38D700958D62 /* ManagingNote */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		AFCA7B89252A38D700958D62 /* ManagingNote */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B91252A3B2200958D62 /* NoteDataManager */,
+				AFCA7B90252A39DA00958D62 /* NoteModel */,
+			);
+			path = ManagingNote;
+			sourceTree = "<group>";
+		};
+		AFCA7B90252A39DA00958D62 /* NoteModel */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B8E252A39CF00958D62 /* NoteProtocol.swift */,
+				AFCA7B8C252A391700958D62 /* Note.swift */,
+			);
+			path = NoteModel;
+			sourceTree = "<group>";
+		};
+		AFCA7B91252A3B2200958D62 /* NoteDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				AFCA7B8A252A38E600958D62 /* NoteDataManagerProtocol.swift */,
+				AFCA7B92252A3B4300958D62 /* NoteDataManager.swift */,
+			);
+			path = NoteDataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,9 +343,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFCA7B8D252A391700958D62 /* Note.swift in Sources */,
 				AFCA7B55252A385D00958D62 /* AppDelegate.swift in Sources */,
+				AFCA7B8B252A38E600958D62 /* NoteDataManagerProtocol.swift in Sources */,
 				AFCA7B57252A385D00958D62 /* SceneDelegate.swift in Sources */,
 				AFCA7B59252A385D00958D62 /* ContentView.swift in Sources */,
+				AFCA7B93252A3B4300958D62 /* NoteDataManager.swift in Sources */,
+				AFCA7B8F252A39CF00958D62 /* NoteProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FunkyNotes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FunkyNotes/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FunkyNotes/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +536,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FunkyNotes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FunkyNotes/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FunkyNotes/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

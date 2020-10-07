@@ -31,21 +31,22 @@ extension NoteDataManager {
     }
     
     func removeNote(at index: Int) {
-        guard notes.indices.contains(index) != true else { return }
+        guard notes.indices.contains(index) == true else { return }
         var note = notes[index]
         note.markRemoved()
         notes.remove(at: index)
         removedNotes.append(note)
     }
     
-    func updateNote(at index: Int, with name: String?, and text: String?) {
-        guard notes.indices.contains(index) != true else { return }
+    func updateNote(at index: Int, with name: String? = nil, and text: String? = nil, addTag tag: String? = nil) {
+        guard notes.indices.contains(index) == true else { return }
         if let name = name { notes[index].changeName(to: name) }
         if let text = text { notes[index].changeText(to: text) }
+        if let tag = tag { notes[index].addTag(tag) }
     }
     
     func deleteNote(at index: Int) {
-        guard removedNotes.indices.contains(index) != true else { return }
+        guard removedNotes.indices.contains(index) == true else { return }
         removedNotes.remove(at: index)
     }
 }
@@ -53,22 +54,23 @@ extension NoteDataManager {
 // MARK: - Supporting methods
 extension NoteDataManager {
     func toggleNoteFavourite(at index: Int) {
-        guard notes.indices.contains(index) != true else { return }
+        guard notes.indices.contains(index) == true else { return }
         notes[index].toggleIsFavourite()
     }
     
     func restoreNote(at index: Int) {
-        guard removedNotes.indices.contains(index) != true else { return }
+        guard removedNotes.indices.contains(index) == true else { return }
         var note = removedNotes[index]
         note.markRestored()
         notes.append(note)
+        removedNotes.remove(at: index)
     }
 }
 
 // MARK: - Filtering, Searching & Sotring methods
 extension NoteDataManager {
     func filter(by tag: String) -> [T] {
-        return notes.filter { $0.tags != nil ? $0.tags!.contains(tag) : false }
+        return notes.filter { $0.tags.contains(tag) }
     }
     
     func filter(by date: Date) -> [T] {

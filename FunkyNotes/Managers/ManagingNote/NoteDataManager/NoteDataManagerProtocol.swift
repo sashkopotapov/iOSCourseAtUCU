@@ -18,7 +18,7 @@ protocol NoteDataManagerProtocol {
     // MARK: - CRUD methods
     func createNote(with name: String, and text: String)
     func removeNote(at index: Int)
-    func updateNote(at index: Int, with name: String?, and text: String?)
+    func updateNote(at index: Int, with name: String?, and text: String?, addTag tag: String?)
     func deleteNote(at index: Int)
     
     // MARK: - Supporting methods

@@ -13,7 +13,7 @@ protocol NoteProtocol: Hashable {
     var id: Int { get }
     var name: String { get }
     var text: String { get }
-    var tags: Set<String>? { get }
+    var tags: Set<String> { get }
     var isFavourite: Bool { get }
     var creationDate: Date { get }
     var deletionDate: Date? { get }

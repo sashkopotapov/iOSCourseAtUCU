@@ -16,7 +16,7 @@ struct Note: NoteProtocol {
     // MARK: - Private properties
     private(set) var name: String
     private(set) var text: String
-    private(set) var tags: Set<String>?
+    private(set) var tags = Set<String>()
     private(set) var isFavourite: Bool = false
     private(set) var creationDate: Date = Date()
     private(set) var deletionDate: Date?
@@ -42,7 +42,7 @@ extension Note {
     }
     
     mutating func addTag(_ tag: String) {
-        tags?.insert(tag)
+        tags.insert(tag)
     }
     
     mutating func toggleIsFavourite() {

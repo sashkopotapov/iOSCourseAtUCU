@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NoteDataManager<T: NoteProtocol>: NoteDataManagerProtocol {
+class NotesDataManager<T: NoteProtocol>: NotesDataManagerProtocol {
     // MARK: - Private properties
     private(set) var notes: [T]
     private(set) var removedNotes: [T]
@@ -25,7 +25,7 @@ class NoteDataManager<T: NoteProtocol>: NoteDataManagerProtocol {
 
 // MARK: - Open methods
 // MARK: - CRUD methods
-extension NoteDataManager {
+extension NotesDataManager {
     func createNote(with name: String, and text: String) {
         notes.append(T(with: name, and: text))
     }
@@ -52,7 +52,7 @@ extension NoteDataManager {
 }
     
 // MARK: - Supporting methods
-extension NoteDataManager {
+extension NotesDataManager {
     func toggleNoteFavourite(at index: Int) {
         guard notes.indices.contains(index) == true else { return }
         notes[index].toggleIsFavourite()
@@ -68,7 +68,7 @@ extension NoteDataManager {
 }
 
 // MARK: - Filtering, Searching & Sotring methods
-extension NoteDataManager {
+extension NotesDataManager {
     func filter(by tag: String) -> [T] {
         return notes.filter { $0.tags.contains(tag) }
     }
@@ -91,6 +91,6 @@ extension NoteDataManager {
 }
 
 // MARK: - Private methods
-private extension NoteDataManager {
+private extension NotesDataManager {
     
 }

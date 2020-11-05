@@ -11,12 +11,12 @@ import XCTest
 
 class FunkyNotesTests: XCTestCase {
     
-    var manager: NoteDataManager<Note>!
+    var manager: NotesDataManager<Note>!
     
     // MARK: - Testing Notes Data Manager
     override func setUp() {
         super.setUp()
-        manager = NoteDataManager()
+        manager = NotesDataManager()
     }
     
     func testSetup() {

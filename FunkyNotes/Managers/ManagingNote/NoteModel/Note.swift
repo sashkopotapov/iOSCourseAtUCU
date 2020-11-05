@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Note: NoteProtocol {
+class Note: NoteProtocol {
        
     // MARK: - Public properties
     let id: Int
@@ -24,7 +24,7 @@ struct Note: NoteProtocol {
     private static var identifierFactory = 0
     
     // MARK: - Lifecycle
-    init(with name: String, and text: String) {
+    required init(with name: String, and text: String) {
         self.name = name
         self.text = text
         self.id = Note.getUniqueIdentifier()
@@ -33,27 +33,27 @@ struct Note: NoteProtocol {
 
 // MARK: - Open methods
 extension Note {
-    mutating func changeName(to name: String) {
+    func changeName(to name: String) {
         self.name = name
     }
     
-    mutating func changeText(to text: String) {
+    func changeText(to text: String) {
         self.text = text
     }
     
-    mutating func addTag(_ tag: String) {
+    func addTag(_ tag: String) {
         tags.insert(tag)
     }
     
-    mutating func toggleIsFavourite() {
+    func toggleIsFavourite() {
         isFavourite = !isFavourite
     }
     
-    mutating func markRemoved() {
+    func markRemoved() {
         deletionDate = Date()
     }
     
-    mutating func markRestored() {
+    func markRestored() {
         deletionDate = nil
     }
 }
@@ -74,3 +74,12 @@ extension Note {
         return Note.identifierFactory
     }
 }
+
+// MARK: - Protocol Conformance
+extension Note: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+

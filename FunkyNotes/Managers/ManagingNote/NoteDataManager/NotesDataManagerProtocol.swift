@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol NoteDataManagerProtocol {
+protocol NotesDataManagerProtocol {
     associatedtype T = NoteProtocol
     
     // MARK: - Private Properties

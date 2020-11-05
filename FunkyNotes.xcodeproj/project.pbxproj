@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFAC1CB625535E5D00672C07 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC1CB525535E5D00672C07 /* Coordinator.swift */; };
+		AFAC1CBE25535E7900672C07 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC1CBD25535E7900672C07 /* AppCoordinator.swift */; };
+		AFAC1CCD2553601800672C07 /* NotesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC1CCC2553601800672C07 /* NotesCoordinator.swift */; };
+		AFAC1CD72553608B00672C07 /* NotesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFAC1CD62553608B00672C07 /* NotesList.storyboard */; };
+		AFAC1CDC2553610F00672C07 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC1CDB2553610F00672C07 /* NotesListViewController.swift */; };
+		AFAC1CEA255364D900672C07 /* Note.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFAC1CE9255364D900672C07 /* Note.storyboard */; };
+		AFAC1CEF255364E600672C07 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC1CEE255364E600672C07 /* NoteViewController.swift */; };
+		AFAC1CF82554570B00672C07 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAC1CF72554570B00672C07 /* UIViewController+UIAlertController.swift */; };
 		AFCA7B55252A385D00958D62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B54252A385D00958D62 /* AppDelegate.swift */; };
 		AFCA7B57252A385D00958D62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B56252A385D00958D62 /* SceneDelegate.swift */; };
-		AFCA7B59252A385D00958D62 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B58252A385D00958D62 /* ContentView.swift */; };
 		AFCA7B5B252A386100958D62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFCA7B5A252A386100958D62 /* Assets.xcassets */; };
-		AFCA7B5E252A386100958D62 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFCA7B5D252A386100958D62 /* Preview Assets.xcassets */; };
 		AFCA7B61252A386100958D62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFCA7B5F252A386100958D62 /* LaunchScreen.storyboard */; };
 		AFCA7B6C252A386100958D62 /* FunkyNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B6B252A386100958D62 /* FunkyNotesTests.swift */; };
 		AFCA7B77252A386100958D62 /* FunkyNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B76252A386100958D62 /* FunkyNotesUITests.swift */; };
-		AFCA7B8B252A38E600958D62 /* NoteDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8A252A38E600958D62 /* NoteDataManagerProtocol.swift */; };
+		AFCA7B8B252A38E600958D62 /* NotesDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8A252A38E600958D62 /* NotesDataManagerProtocol.swift */; };
 		AFCA7B8D252A391700958D62 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8C252A391700958D62 /* Note.swift */; };
 		AFCA7B8F252A39CF00958D62 /* NoteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B8E252A39CF00958D62 /* NoteProtocol.swift */; };
-		AFCA7B93252A3B4300958D62 /* NoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B92252A3B4300958D62 /* NoteDataManager.swift */; };
+		AFCA7B93252A3B4300958D62 /* NotesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA7B92252A3B4300958D62 /* NotesDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,12 +45,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AFAC1CB525535E5D00672C07 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		AFAC1CBD25535E7900672C07 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		AFAC1CCC2553601800672C07 /* NotesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCoordinator.swift; sourceTree = "<group>"; };
+		AFAC1CD62553608B00672C07 /* NotesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotesList.storyboard; sourceTree = "<group>"; };
+		AFAC1CDB2553610F00672C07 /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
+		AFAC1CE9255364D900672C07 /* Note.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Note.storyboard; sourceTree = "<group>"; };
+		AFAC1CEE255364E600672C07 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		AFAC1CF72554570B00672C07 /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		AFCA7B51252A385D00958D62 /* FunkyNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunkyNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFCA7B54252A385D00958D62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFCA7B56252A385D00958D62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AFCA7B58252A385D00958D62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AFCA7B5A252A386100958D62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AFCA7B5D252A386100958D62 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AFCA7B60252A386100958D62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFCA7B62252A386100958D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFCA7B67252A386100958D62 /* FunkyNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunkyNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,10 +65,10 @@
 		AFCA7B72252A386100958D62 /* FunkyNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunkyNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFCA7B76252A386100958D62 /* FunkyNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunkyNotesUITests.swift; sourceTree = "<group>"; };
 		AFCA7B78252A386100958D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AFCA7B8A252A38E600958D62 /* NoteDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataManagerProtocol.swift; sourceTree = "<group>"; };
+		AFCA7B8A252A38E600958D62 /* NotesDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataManagerProtocol.swift; sourceTree = "<group>"; };
 		AFCA7B8C252A391700958D62 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		AFCA7B8E252A39CF00958D62 /* NoteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProtocol.swift; sourceTree = "<group>"; };
-		AFCA7B92252A3B4300958D62 /* NoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataManager.swift; sourceTree = "<group>"; };
+		AFCA7B92252A3B4300958D62 /* NotesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +96,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AFAC1CB425535E5100672C07 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				AFAC1CB525535E5D00672C07 /* Coordinator.swift */,
+				AFAC1CBD25535E7900672C07 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AFAC1CCA25535FA200672C07 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				AFAC1CCC2553601800672C07 /* NotesCoordinator.swift */,
+				AFAC1CD52553602900672C07 /* Note */,
+				AFAC1CD12553601B00672C07 /* NotesList */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		AFAC1CD12553601B00672C07 /* NotesList */ = {
+			isa = PBXGroup;
+			children = (
+				AFAC1CD62553608B00672C07 /* NotesList.storyboard */,
+				AFAC1CDB2553610F00672C07 /* NotesListViewController.swift */,
+			);
+			path = NotesList;
+			sourceTree = "<group>";
+		};
+		AFAC1CD52553602900672C07 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				AFAC1CE9255364D900672C07 /* Note.storyboard */,
+				AFAC1CEE255364E600672C07 /* NoteViewController.swift */,
+			);
+			path = Note;
+			sourceTree = "<group>";
+		};
+		AFAC1CF6255456F400672C07 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AFAC1CF72554570B00672C07 /* UIViewController+UIAlertController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		AFCA7B48252A385D00958D62 = {
 			isa = PBXGroup;
 			children = (
@@ -107,21 +164,13 @@
 		AFCA7B53252A385D00958D62 /* FunkyNotes */ = {
 			isa = PBXGroup;
 			children = (
+				AFAC1CF6255456F400672C07 /* Extension */,
 				AFCA7B88252A38A200958D62 /* Managers */,
 				AFCA7B87252A389C00958D62 /* Flows */,
 				AFCA7B86252A388F00958D62 /* Assets */,
 				AFCA7B85252A387E00958D62 /* SupportingFiles */,
-				AFCA7B5C252A386100958D62 /* Preview Content */,
 			);
 			path = FunkyNotes;
-			sourceTree = "<group>";
-		};
-		AFCA7B5C252A386100958D62 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				AFCA7B5D252A386100958D62 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		AFCA7B6A252A386100958D62 /* FunkyNotesTests */ = {
@@ -172,7 +221,8 @@
 		AFCA7B87252A389C00958D62 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				AFCA7B58252A385D00958D62 /* ContentView.swift */,
+				AFAC1CB425535E5100672C07 /* Coordinator */,
+				AFAC1CCA25535FA200672C07 /* Notes */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -206,8 +256,8 @@
 		AFCA7B91252A3B2200958D62 /* NoteDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				AFCA7B8A252A38E600958D62 /* NoteDataManagerProtocol.swift */,
-				AFCA7B92252A3B4300958D62 /* NoteDataManager.swift */,
+				AFCA7B8A252A38E600958D62 /* NotesDataManagerProtocol.swift */,
+				AFCA7B92252A3B4300958D62 /* NotesDataManager.swift */,
 			);
 			path = NoteDataManager;
 			sourceTree = "<group>";
@@ -316,9 +366,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFAC1CEA255364D900672C07 /* Note.storyboard in Resources */,
 				AFCA7B61252A386100958D62 /* LaunchScreen.storyboard in Resources */,
-				AFCA7B5E252A386100958D62 /* Preview Assets.xcassets in Resources */,
 				AFCA7B5B252A386100958D62 /* Assets.xcassets in Resources */,
+				AFAC1CD72553608B00672C07 /* NotesList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,11 +396,16 @@
 			files = (
 				AFCA7B8D252A391700958D62 /* Note.swift in Sources */,
 				AFCA7B55252A385D00958D62 /* AppDelegate.swift in Sources */,
-				AFCA7B8B252A38E600958D62 /* NoteDataManagerProtocol.swift in Sources */,
+				AFCA7B8B252A38E600958D62 /* NotesDataManagerProtocol.swift in Sources */,
+				AFAC1CEF255364E600672C07 /* NoteViewController.swift in Sources */,
 				AFCA7B57252A385D00958D62 /* SceneDelegate.swift in Sources */,
-				AFCA7B59252A385D00958D62 /* ContentView.swift in Sources */,
-				AFCA7B93252A3B4300958D62 /* NoteDataManager.swift in Sources */,
+				AFAC1CCD2553601800672C07 /* NotesCoordinator.swift in Sources */,
+				AFAC1CBE25535E7900672C07 /* AppCoordinator.swift in Sources */,
+				AFAC1CDC2553610F00672C07 /* NotesListViewController.swift in Sources */,
+				AFCA7B93252A3B4300958D62 /* NotesDataManager.swift in Sources */,
+				AFAC1CF82554570B00672C07 /* UIViewController+UIAlertController.swift in Sources */,
 				AFCA7B8F252A39CF00958D62 /* NoteProtocol.swift in Sources */,
+				AFAC1CB625535E5D00672C07 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,9 +571,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"FunkyNotes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/FunkyNotes/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,9 +590,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"FunkyNotes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/FunkyNotes/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

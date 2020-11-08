@@ -9,6 +9,7 @@
 import Foundation
 
 class NotesDataManager<T: NoteProtocol>: NotesDataManagerProtocol {
+    
     // MARK: - Private properties
     private(set) var notes: [T]
     private(set) var removedNotes: [T]
@@ -30,40 +31,43 @@ extension NotesDataManager {
         notes.append(T(with: name, and: text))
     }
     
-    func removeNote(at index: Int) {
-        guard notes.indices.contains(index) == true else { return }
-        var note = notes[index]
-        note.markRemoved()
-        notes.remove(at: index)
-        removedNotes.append(note)
+    func removeNote(with id: Int) -> Bool {
+        for (index, v) in notes.enumerated() {
+            var note = v
+            if note.id == id {
+                note.markRemoved()
+                notes.remove(at: index)
+                removedNotes.append(note)
+                return true
+            }
+        }
+        return false
     }
     
-    func updateNote(at index: Int, with name: String? = nil, and text: String? = nil, addTag tag: String? = nil) {
-        guard notes.indices.contains(index) == true else { return }
-        if let name = name { notes[index].changeName(to: name) }
-        if let text = text { notes[index].changeText(to: text) }
-        if let tag = tag { notes[index].addTag(tag) }
-    }
-    
-    func deleteNote(at index: Int) {
-        guard removedNotes.indices.contains(index) == true else { return }
-        removedNotes.remove(at: index)
+    func deleteNote(with id: Int) -> Bool {
+        for (index, v) in notes.enumerated() {
+            if v.id == id {
+                notes.remove(at: index)
+                return true
+            }
+        }
+        return false
     }
 }
     
 // MARK: - Supporting methods
 extension NotesDataManager {
-    func toggleNoteFavourite(at index: Int) {
-        guard notes.indices.contains(index) == true else { return }
-        notes[index].toggleIsFavourite()
-    }
-    
-    func restoreNote(at index: Int) {
-        guard removedNotes.indices.contains(index) == true else { return }
-        var note = removedNotes[index]
-        note.markRestored()
-        notes.append(note)
-        removedNotes.remove(at: index)
+    func restoreNote(with id: Int) -> Bool {
+        for (index, v) in removedNotes.enumerated() {
+            var note = v
+            if note.id == id {
+                note.markRestored()
+                notes.append(note)
+                removedNotes.remove(at: index)
+                return true
+            }
+        }
+        return false
     }
 }
 

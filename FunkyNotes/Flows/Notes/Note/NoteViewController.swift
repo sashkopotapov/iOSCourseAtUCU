@@ -21,32 +21,8 @@ final class NoteViewController: UIViewController {
     @IBOutlet private weak var textTextView: UITextView!
     
     // MARK: - Properties
-    private var _note: Note?
-    private var _mode: Mode = .editing
-    
-    private var note: Note? {
-        didSet {
-            if note != nil {
-                nameLabel.text = note?.name
-                textTextView.text = note?.text
-                tagsTextField.text = note?.tags.description
-            }
-        }
-    }
-    
-    private var mode: Mode = .editing {
-        didSet {
-            if mode == .editing {
-                setupNavigationBarEditing()
-                enableFields()
-            }
-            else {
-                setupNavigationBarRegular()
-                disableFields()
-            }
-        }
-    }
-    
+    private var note: Note?
+    private var mode: Mode = .viewing
     private var notesManager: NotesDataManager<Note>?
     
     // MARK: - Delegates
@@ -56,17 +32,27 @@ final class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarEditing()
-        mode = _mode
-        note = _note
+        setupUI()
     }
 }
 
 // MARK: - Open Methods
 extension NoteViewController {
-    func configure(with note: Note? = nil, mode: Mode, manager: NotesDataManager<Note>) {
-        if note != nil { self._note = note }
-        self.notesManager = manager
-        self._mode = mode
+    func configureForAdding(manager: NotesDataManager<Note>) {
+        notesManager = manager
+        mode = .editing
+    }
+    
+    func configureForEditing(manager: NotesDataManager<Note>, note: Note) {
+        notesManager = manager
+        self.note = note
+        mode = .editing
+    }
+    
+    func configureForViewing(manager: NotesDataManager<Note>, note: Note) {
+        notesManager = manager
+        self.note = note
+        mode = .viewing
     }
 }
 // MARK: - IBAction & Target Actions
@@ -77,26 +63,48 @@ extension NoteViewController {
             return
         }
         
-        notesManager?.createNote(with: name,
-                            and: textTextView.text ?? "")
+        if note == nil {
+            notesManager?.createNote(with: name,
+                                     and: textTextView.text)
+        } else {
+            note?.changeName(to: name)
+            note?.changeText(to: textTextView.text)
+        }
         
-//        if tagsTextField.hasText {
-//            manager?.updateNote(at: manager!.notes.count - 1,
-//                                addTag: tagsTextField.text ?? "")
-//        }
-        
-        showAlert("Success", and: "Note successfully created.") { [weak self] in
-            self?.coordinator?.back()
+        showAlert("Success", and: "Note successfully saved.") {
+            self.coordinator?.back()
         }
     }
     
     @objc func editNoteAction() {
         mode = .editing
+        updateViewAccordingToMode()
+    }
+    
+    @objc func deleteNoteAction() {
+        guard let note = note else {
+            return
+        }
+        
+        if notesManager!.removeNote(with: note.id) {
+            showAlert("Success", and: "Note successfully deleted.") {
+                self.coordinator?.back()
+            }
+        } else {
+            showAlert("Failure", and: "Something went wrong.") {
+                self.coordinator?.back()
+            }
+        }
     }
 }
 
 // MARK: - Private Methods
 private extension NoteViewController {
+    func setupUI() {
+        fillNoteFieldsFromModel()
+        updateViewAccordingToMode()
+    }
+    
     func setupNavigationBarEditing() {
         let addItem = UIBarButtonItem(title: "Save",
                                       style: .done,
@@ -113,20 +121,43 @@ private extension NoteViewController {
                                       target: self,
                                       action: #selector(editNoteAction))
         
-        navigationItem.setRightBarButton(addItem, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        let deleteItem = UIBarButtonItem(barButtonSystemItem: .trash,
+                                         target: self,
+                                         action: #selector(deleteNoteAction))
+        
+        navigationItem.setRightBarButtonItems([addItem, deleteItem], animated: true)
+         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func enableFields() {
+    func enableEditingFields() {
         nameLabel.isUserInteractionEnabled = true
         tagsTextField.isUserInteractionEnabled = true
         textTextView.isUserInteractionEnabled = true
     }
     
-    func disableFields() {
+    func disableEditingFields() {
         nameLabel.isUserInteractionEnabled = false
         tagsTextField.isUserInteractionEnabled = false
         textTextView.isUserInteractionEnabled = false
+    }
+    
+    func fillNoteFieldsFromModel() {
+        guard let note = note else {
+            return
+        }
+        nameLabel.text = note.name
+        textTextView.text = note.text
+        tagsTextField.text = note.tags.description
+    }
+    
+    func updateViewAccordingToMode() {
+        if mode == .editing {
+            enableEditingFields()
+            setupNavigationBarEditing()
+        } else {
+            disableEditingFields()
+            setupNavigationBarRegular()
+        }
     }
 }
 

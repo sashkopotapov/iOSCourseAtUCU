@@ -9,7 +9,12 @@
 import UIKit
 
 class NotesListViewController: UIViewController {
-
+    
+    enum Mode {
+        case archive
+        case regular
+    }
+    
     // MARK: - IBOutlets & Views
     @IBOutlet private weak var tableView: UITableView!
     
@@ -17,6 +22,7 @@ class NotesListViewController: UIViewController {
     var notesManager: NotesDataManager<Note>!
     
     private var notesDataSource: [Note] = []
+    private var mode: Mode = .regular
     
     // MARK: - Delegates
     weak var coordinator: NotesCoordinator?
@@ -25,13 +31,11 @@ class NotesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupNavigationBarRegular()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        notesDataSource = notesManager.notes
-        tableView.reloadData()
+        showNotes()
     }
 }
 
@@ -43,16 +47,22 @@ extension NotesListViewController {
         coordinator?.showAddNewNote()
     }
     
-    @objc func showRemovedNotesAction() {
+    @objc func showRemovedNotes() {
+        mode = .archive
         notesDataSource = notesManager.removedNotes
         tableView.reloadData()
         setupNavigationBarForDeletedNotes()
+        tableView.allowsSelection = false
+        navigationItem.searchController = nil
     }
     
     @objc func showNotes() {
+        mode = .regular
         notesDataSource = notesManager.notes
         tableView.reloadData()
         setupNavigationBarRegular()
+        tableView.allowsSelection = true
+        setupSearchBar()
     }
 }
 
@@ -68,9 +78,10 @@ private extension NotesListViewController {
                                       target: self,
                                       action: #selector(addNewNoteAction))
         
-        let deletedItem = UIBarButtonItem(barButtonSystemItem: .trash,
+        let deletedItem = UIBarButtonItem(title: "Trash",
+                                          style: .plain,
                                           target: self,
-                                          action: #selector(showRemovedNotesAction))
+                                          action: #selector(showRemovedNotes))
         
         navigationItem.setLeftBarButton(deletedItem, animated: true)
         navigationItem.setRightBarButton(addItem, animated: true)
@@ -89,6 +100,15 @@ private extension NotesListViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Deleted Notes"
     }
+    
+    func setupSearchBar() {
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.delegate = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Search by name"
+        navigationItem.searchController = search
+    }
 }
 
 // MARK: - Delegate Conformance
@@ -96,6 +116,29 @@ extension NotesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let note = notesManager.notes[indexPath.row]
         coordinator?.showNote(note)
+    }
+
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard mode == .archive else { return nil }
+        
+        let id = notesDataSource[indexPath.row].id
+        
+        let restoreAction = UIContextualAction(style: .normal, title: "Restore") { (_, _, completionHandler) in
+            if self.notesManager.restoreNote(with: id) {
+                self.showAlert("Success", and: "Successfully restored note.")
+                self.notesDataSource = self.notesManager.removedNotes
+                self.tableView.reloadData()
+            } else {
+                self.showAlert("Failure", and: "Failed to restore note.")
+            }
+            completionHandler(true)
+        }
+        
+        restoreAction.backgroundColor = .systemYellow
+
+        let configuration = UISwipeActionsConfiguration(actions: [restoreAction])
+        return configuration
     }
 }
 
@@ -109,5 +152,20 @@ extension NotesListViewController: UITableViewDataSource {
         cell?.textLabel?.text = notesDataSource[indexPath.row].name
         cell?.detailTextLabel?.text = notesDataSource[indexPath.row].text
         return cell!
+    }
+}
+
+extension NotesListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        self.notesDataSource = notesManager.search(by: text)
+        tableView.reloadData()
+    }
+}
+
+extension NotesListViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        self.notesDataSource = notesManager.notes
+        tableView.reloadData()
     }
 }

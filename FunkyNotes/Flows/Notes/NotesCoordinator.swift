@@ -30,7 +30,7 @@ final class NotesCoordinator: Coordinator {
         let storyboard = UIStoryboard(name: "Note", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "NoteViewController") as! NoteViewController
         vc.coordinator = self
-        vc.configure(mode: .editing, manager: notesManager)
+        vc.configureForAdding(manager: notesManager)
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -38,7 +38,7 @@ final class NotesCoordinator: Coordinator {
         let storyboard = UIStoryboard(name: "Note", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "NoteViewController") as! NoteViewController
         vc.coordinator = self
-        vc.configure(with: note, mode: .editing, manager: notesManager)
+        vc.configureForEditing(manager: notesManager, note: note)
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -46,7 +46,7 @@ final class NotesCoordinator: Coordinator {
         let storyboard = UIStoryboard(name: "Note", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "NoteViewController") as! NoteViewController
         vc.coordinator = self
-        vc.configure(with: note, mode: .viewing, manager: notesManager)
+        vc.configureForViewing(manager: notesManager, note: note)
         navigationController.pushViewController(vc, animated: true)
     }
     

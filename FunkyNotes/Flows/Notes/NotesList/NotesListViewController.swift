@@ -71,6 +71,7 @@ private extension NotesListViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isEditing = true
     }
     
     func setupNavigationBarRegular() {
@@ -120,25 +121,37 @@ extension NotesListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard mode == .archive else { return nil }
-        
         let id = notesDataSource[indexPath.row].id
-        
-        let restoreAction = UIContextualAction(style: .normal, title: "Restore") { (_, _, completionHandler) in
-            if self.notesManager.restoreNote(with: id) {
-                self.showAlert("Success", and: "Successfully restored note.")
-                self.notesDataSource = self.notesManager.removedNotes
-                self.tableView.reloadData()
-            } else {
-                self.showAlert("Failure", and: "Failed to restore note.")
-            }
-            completionHandler(true)
-        }
-        
-        restoreAction.backgroundColor = .systemYellow
 
-        let configuration = UISwipeActionsConfiguration(actions: [restoreAction])
-        return configuration
+        if mode == .archive {
+            let restoreAction = UIContextualAction(style: .normal, title: "Restore") { (_, _, completionHandler) in
+                if self.notesManager.restoreNote(with: id) {
+                    self.showAlert("Success", and: "Successfully restored note.")
+                    self.notesDataSource = self.notesManager.removedNotes
+                    self.tableView.reloadData()
+                } else {
+                    self.showAlert("Failure", and: "Failed to restore note.")
+                }
+                completionHandler(true)
+            }
+            restoreAction.backgroundColor = .systemYellow
+            let configuration = UISwipeActionsConfiguration(actions: [restoreAction])
+            return configuration
+        } else  {
+            let removeAction = UIContextualAction(style: .normal, title: "Remove") { (_, _, completionHandler) in
+                if self.notesManager.deleteNote(with: id) {
+                    self.showAlert("Success", and: "Successfully removed note.")
+                    self.notesDataSource = self.notesManager.notes
+                    self.tableView.reloadData()
+                } else {
+                    self.showAlert("Failure", and: "Failed to restore note.")
+                }
+                completionHandler(true)
+            }
+            removeAction.backgroundColor = .systemRed
+            let configuration = UISwipeActionsConfiguration(actions: [removeAction])
+            return configuration
+        }
     }
 }
 
@@ -152,6 +165,20 @@ extension NotesListViewController: UITableViewDataSource {
         cell?.textLabel?.text = notesDataSource[indexPath.row].name
         cell?.detailTextLabel?.text = notesDataSource[indexPath.row].text
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = notesDataSource[sourceIndexPath.row]
+        notesDataSource.remove(at: sourceIndexPath.row)
+        notesDataSource.insert(movedObject, at: destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
 
